@@ -1,20 +1,16 @@
 package moe.henry_zhr.force_dark;
 
-import androidx.annotation.Keep;
-import de.robv.android.xposed.IXposedHookLoadPackage;
+import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
-@Keep
-public class MainHook implements IXposedHookLoadPackage {
-
+public class MainHook implements IXposedHookZygoteInit {
   @Override
-  public void handleLoadPackage(LoadPackageParam lpparam) {
+  public void initZygote(StartupParam startupParam) {
     XposedHelpers.findAndHookMethod(
         "android.os.SystemProperties",
-        lpparam.classLoader,
-        "getBoolean",
+        null,
+        "native_get_boolean",
         String.class,
         boolean.class,
         new XC_MethodHook() {
@@ -24,6 +20,7 @@ public class MainHook implements IXposedHookLoadPackage {
               param.setResult(true);
             }
           }
-        });
+        }
+    );
   }
 }
