@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools">
 
   <application
-    android:label="Force Dark"
+    android:label="@string/name"
     tools:ignore="AllowBackup,MissingApplicationIcon">
     <meta-data
       android:name="xposedmodule"
@@ -14,7 +14,7 @@
       android:value="53" />
     <meta-data
       android:name="xposeddescription"
-      android:value="为作用域内应用强制启用 SmartDark" />
+      android:value="@string/description" />
   </application>
 
 </manifest>
